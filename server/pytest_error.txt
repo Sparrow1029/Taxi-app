@@ -1,0 +1,56 @@
+pytest
+=============================== test session starts ================================
+platform linux -- Python 3.7.3, pytest-5.0.1, py-1.8.0, pluggy-0.12.0
+Django settings: taxi.settings (from ini file)
+rootdir: /home/sparrow/Projects/Python/taxi-app, inifile: pytest.ini
+plugins: asyncio-0.10.0, django-3.4.8
+collected 1 item                                                                   
+
+trips/tests/test_websockets.py E                                             [100%]
+
+====================================== ERRORS ======================================
+________ ERROR at setup of TestWebsockets.test_authorized_user_can_connect _________
+
+request = <SubRequest '_django_db_marker' for <Function test_authorized_user_can_connect>>
+
+    @pytest.fixture(autouse=True)
+    def _django_db_marker(request):
+        """Implement the django_db marker, internal to pytest-django.
+    
+        This will dynamically request the ``db``, ``transactional_db`` or
+        ``django_db_reset_sequences`` fixtures as required by the django_db marker.
+        """
+        marker = request.node.get_closest_marker("django_db")
+        if marker:
+            transaction, reset_sequences = validate_django_db(marker)
+            if reset_sequences:
+                request.getfixturevalue("django_db_reset_sequences")
+            elif transaction:
+>               request.getfixturevalue("transactional_db")
+
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/pytest_django/plugin.py:483: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+request = <SubRequest 'transactional_db' for <Function test_authorized_user_can_connect>>
+django_db_setup = None
+django_db_blocker = <pytest_django.plugin._DatabaseBlocker object at 0x7f94582875c0>
+
+    @pytest.fixture(scope="function")
+    def transactional_db(request, django_db_setup, django_db_blocker):
+        """Require a django test database with transaction support.
+    
+        This will re-initialise the django database for each test and is
+        thus slower than the normal ``db`` fixture.
+    
+        If you want to use the database with transactions you must request
+        this resource.
+    
+        If multiple database fixtures are requested, they take precedence
+        over each other in the following order (the last one wins): ``db``,
+        ``transactional_db``, ``django_db_reset_sequences``.
+        """
+>       if "django_db_reset_sequences" in request.funcargnames:
+E       pytest.PytestDeprecationWarning: The `funcargnames` attribute was an alias for `fixturenames`, since pytest 2.3 - use the newer attribute instead.
+
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/pytest_django/fixtures.py:199: PytestDeprecationWarning
+============================= 1 error in 0.33 seconds ==============================

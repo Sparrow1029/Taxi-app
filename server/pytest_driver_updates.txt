@@ -1,0 +1,174 @@
+========================================================================== test session starts ===========================================================================
+platform linux -- Python 3.7.3, pytest-5.0.1, py-1.8.0, pluggy-0.12.0
+Django settings: taxi.settings (from ini file)
+rootdir: /home/sparrow/Projects/Python/taxi-app, inifile: pytest.ini
+plugins: django-3.5.1, asyncio-0.10.0
+collected 5 items                                                                                                                                                        
+
+trips/tests/test_websockets.py ....F                                                                                                                               [100%]
+
+================================================================================ FAILURES ================================================================================
+______________________________________________________________ TestWebsockets.test_driver_can_update_trips _______________________________________________________________
+
+self = <channels.testing.websocket.WebsocketCommunicator object at 0x7f860009c400>, timeout = 1
+
+    async def receive_output(self, timeout=1):
+        """
+        Receives a single message from the application, with optional timeout.
+        """
+        # Make sure there's not an exception to raise from the task
+        if self.future.done():
+            self.future.result()
+        # Wait and receive the message
+        try:
+            async with async_timeout(timeout):
+>               return await self.output_queue.get()
+
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/asgiref/testing.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Queue at 0x7f8600096898 maxsize=0>
+
+    async def get(self):
+        """Remove and return an item from the queue.
+    
+        If queue is empty, wait until an item is available.
+        """
+        while self.empty():
+            getter = self._loop.create_future()
+            self._getters.append(getter)
+            try:
+>               await getter
+E               concurrent.futures._base.CancelledError
+
+/usr/lib/python3.7/asyncio/queues.py:159: CancelledError
+
+During handling of the above exception, another exception occurred:
+
+self = <channels.testing.websocket.WebsocketCommunicator object at 0x7f860009c400>, timeout = 1
+
+    async def receive_output(self, timeout=1):
+        """
+        Receives a single message from the application, with optional timeout.
+        """
+        # Make sure there's not an exception to raise from the task
+        if self.future.done():
+            self.future.result()
+        # Wait and receive the message
+        try:
+            async with async_timeout(timeout):
+>               return await self.output_queue.get()
+
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/asgiref/testing.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <asgiref.timeout.timeout object at 0x7f8600096048>, exc_type = <class 'concurrent.futures._base.CancelledError'>, exc_val = CancelledError()
+exc_tb = <traceback object at 0x7f86000a4108>
+
+    async def __aexit__(
+        self,
+        exc_type: Type[BaseException],
+        exc_val: BaseException,
+        exc_tb: TracebackType,
+    ) -> None:
+>       self._do_exit(exc_type)
+
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/asgiref/timeout.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <asgiref.timeout.timeout object at 0x7f8600096048>, exc_type = <class 'concurrent.futures._base.CancelledError'>
+
+    def _do_exit(self, exc_type: Type[BaseException]) -> None:
+        if exc_type is asyncio.CancelledError and self._cancelled:
+            self._cancel_handler = None
+            self._task = None
+>           raise asyncio.TimeoutError
+E           concurrent.futures._base.TimeoutError
+
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/asgiref/timeout.py:105: TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+self = <trips.tests.test_websockets.TestWebsockets object at 0x7f86000ee908>, settings = <pytest_django.fixtures.SettingsWrapper object at 0x7f86000a5908>
+
+    async def test_driver_can_update_trips(self, settings):
+        settings.CHANNEL_LAYERS = TEST_CHANNEL_LAYERS
+    
+        trip = await create_trip(
+            pick_up_address='A',
+            drop_off_address='B'
+        )
+        user = await create_user(
+            username='driver@example.com',
+            group='driver'
+        )
+    
+        # Send JSON message to server.
+        communicator = await connect_and_update_trip(
+            user=user,
+            trip=trip,
+>           status=Trip.IN_PROGRESS
+        )
+
+trips/tests/test_websockets.py:145: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+trips/tests/test_websockets.py:224: in connect_and_update_trip
+    communicator = await auth_connect(user)
+trips/tests/test_websockets.py:197: in auth_connect
+    connected, _ = await communicator.connect()
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/channels/testing/websocket.py:36: in connect
+    response = await self.receive_output(timeout)
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/asgiref/testing.py:79: in receive_output
+    self.future.result()
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/asgiref/compatibility.py:34: in new_application
+    return await instance(receive, send)
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/channels/sessions.py:183: in __call__
+    return await self.inner(receive, self.send)
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/channels/middleware.py:41: in coroutine_call
+    await inner_instance(receive, send)
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/channels/consumer.py:59: in __call__
+    [receive, self.channel_receive], self.dispatch
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/channels/utils.py:52: in await_many_dispatch
+    await dispatch(result)
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/channels/consumer.py:73: in dispatch
+    await handler(message)
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/channels/generic/websocket.py:175: in websocket_connect
+    await self.connect()
+trips/consumers.py:28: in connect
+    str(trip_id) for trip_id in await self._get_trips(self.scope['user'])
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/asgiref/sync.py:150: in __call__
+    return await asyncio.wait_for(future, timeout=None)
+/usr/lib/python3.7/asyncio/tasks.py:388: in wait_for
+    return await fut
+/usr/lib/python3.7/concurrent/futures/thread.py:57: in run
+    result = self.fn(*self.args, **self.kwargs)
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/channels/db.py:14: in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/asgiref/sync.py:169: in thread_handler
+    return func(*args, **kwargs)
+trips/consumers.py:114: in _get_trips
+    ).only('id').values('id', flat=True)
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/django/db/models/query.py:798: in values
+    clone = self._values(*fields, **expressions)
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/django/db/models/query.py:791: in _values
+    clone = clone.annotate(**expressions)
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/django/db/models/query.py:1027: in annotate
+    self._validate_values_are_expressions(args + tuple(kwargs.values()), method_name='annotate')
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+values = (True,), method_name = 'annotate'
+
+    @staticmethod
+    def _validate_values_are_expressions(values, method_name):
+        invalid_args = sorted(str(arg) for arg in values if not hasattr(arg, 'resolve_expression'))
+        if invalid_args:
+            raise TypeError(
+                'QuerySet.%s() received non-expression(s): %s.' % (
+                    method_name,
+>                   ', '.join(invalid_args),
+                )
+            )
+E           TypeError: QuerySet.annotate() received non-expression(s): True.
+
+/home/sparrow/.local/share/virtualenvs/taxi-app/lib/python3.7/site-packages/django/db/models/query.py:1310: TypeError
+=================================================================== 1 failed, 4 passed in 2.43 seconds ===================================================================
