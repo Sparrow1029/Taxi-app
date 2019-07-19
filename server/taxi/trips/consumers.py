@@ -22,15 +22,23 @@ class TaxiConsumer(AsyncJsonWebsocketConsumer):
         if user.is_anonymous:
             await self.close()
         else:
-            # Get trips and add rider to each one's group.
             channel_groups = []
+
+            # Add a driver to the 'drivers' group.
+            user_group = await self._get_user_group(self.scope['user'])
+            if user_group == 'driver':
+                channel_groups.append(self.channel_layer.group_add(
+                    group='drivers',
+                    channel=self.channel_name
+                ))
+
             self.trips = set([
                 str(trip_id) for trip_id in await self._get_trips(self.scope['user'])
             ])
             for trip in self.trips:
-                channel_groups.append(self.channel_layer.group_add(trip,
-                                                                   self.channel_name))
-                asyncio.gather(*channel_groups)
+                channel_groups.append(self.channel_layer.group_add(trip, self.channel_name))
+            asyncio.gather(*channel_groups)
+
             await self.accept()
 
     async def receive_json(self, content, **kwargs):
@@ -47,6 +55,12 @@ class TaxiConsumer(AsyncJsonWebsocketConsumer):
         trip = await self._create_trip(event.get('data'))
         trip_id = f'{trip.id}'
         trip_data = ReadOnlyTripSerializer(trip).data
+
+        # Send rider requests to all drivers.
+        await self.channel_layer.group_send(group='drivers', message={
+            'type': 'echo.message',
+            'data': trip_data
+        })
 
         # Handle add only if trip is not being tracked.
         if trip_id not in self.trips:
@@ -65,6 +79,12 @@ class TaxiConsumer(AsyncJsonWebsocketConsumer):
         trip = await self._update_trip(event.get('data'))
         trip_id = f'{trip.id}'
         trip_data = ReadOnlyTripSerializer(trip).data
+
+        # Send updates to riders that subscribe to this trip.
+        await self.channel_layer.group_send(group=trip_id, message={
+            'type': 'echo.message',
+            'data': trip_data
+        })
 
         # Handle add only if trip is not being tracked.
         # This happens when a driver accepts a request.
@@ -89,6 +109,15 @@ class TaxiConsumer(AsyncJsonWebsocketConsumer):
             )
             for trip in self.trips
         ]
+
+        # Discard driver from 'drivers' group.
+        user_group = await self._get_user_group(self.scope['user'])
+        if user_group == 'driver':
+            channel_groups.append(self.channel_layer.group_discard(
+                group='drivers',
+                channel=self.channel_name
+            ))
+
         asyncio.gather(*channel_groups)
 
         # Remove all references to trips
@@ -111,11 +140,17 @@ class TaxiConsumer(AsyncJsonWebsocketConsumer):
         if 'driver' in user_groups:
             return user.trips_as_driver.exclude(
                 status=Trip.COMPLETED
-            ).only('id').values('id', flat=True)
+            ).only('id').values_list('id', flat=True)
         else:
             return user.trips_as_rider.exclude(
                 status=Trip.COMPLETED
             ).only('id').values_list('id', flat=True)
+
+    @database_sync_to_async
+    def _get_user_group(self, user):
+        if not user.is_authenticated:
+            raise Exception('User is not authenticated.')
+        return user.groups.first().name
 
     @database_sync_to_async
     def _update_trip(self, content):
