@@ -1,0 +1,155 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALLOWED_HOSTS	taxi/settings.py	/^ALLOWED_HOSTS = []$/;"	v
+ASGI_APPLICATION	taxi/settings.py	/^ASGI_APPLICATION = 'taxi.routing.application'$/;"	v
+AUTH_PASSWORD_VALIDATORS	taxi/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	v
+AUTH_USER_MODEL	taxi/settings.py	/^AUTH_USER_MODEL = 'trips.User'$/;"	v
+AuthenticationTest	trips/tests/test_http.py	/^class AuthenticationTest(APITestCase):$/;"	c
+BASE_DIR	taxi/settings.py	/^BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))$/;"	v
+CHANNEL_LAYERS	taxi/settings.py	/^CHANNEL_LAYERS = {$/;"	v
+COMPLETED	trips/models.py	/^    COMPLETED = 'COMPLETED'$/;"	v	class:Trip
+DATABASES	taxi/settings.py	/^DATABASES = {$/;"	v
+DEBUG	taxi/settings.py	/^DEBUG = True$/;"	v
+HttpTripTest	trips/tests/test_http.py	/^class HttpTripTest(APITestCase):$/;"	c
+INSTALLED_APPS	taxi/settings.py	/^INSTALLED_APPS = [$/;"	v
+IN_PROGRESS	trips/models.py	/^    IN_PROGRESS = 'IN_PROGRESS'$/;"	v	class:Trip
+LANGUAGE_CODE	taxi/settings.py	/^LANGUAGE_CODE = 'en-us'$/;"	v
+LogInView	trips/views.py	/^class LogInView(views.APIView):$/;"	c
+LogOutView	trips/views.py	/^class LogOutView(views.APIView):$/;"	c
+MIDDLEWARE	taxi/settings.py	/^MIDDLEWARE = [$/;"	v
+Meta	trips/serializers.py	/^    class Meta:$/;"	c	class:ReadOnlyTripSerializer
+Meta	trips/serializers.py	/^    class Meta:$/;"	c	class:TripSerializer
+Meta	trips/serializers.py	/^    class Meta:$/;"	c	class:UserSerializer
+Migration	trips/migrations/0001_initial.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	trips/migrations/0002_trip.py	/^class Migration(migrations.Migration):$/;"	c
+PASSWORD	trips/tests/test_http.py	/^PASSWORD = 'pAssw0rd!'$/;"	v
+REDIS_URL	taxi/settings.py	/^REDIS_URL = os.getenv('REDIS_URL', 'redis:\/\/localhost:6379')$/;"	v
+REQUESTED	trips/models.py	/^    REQUESTED = 'REQUESTED'$/;"	v	class:Trip
+REST_FRAMEWORK	taxi/settings.py	/^REST_FRAMEWORK = {$/;"	v
+ROOT_URLCONF	taxi/settings.py	/^ROOT_URLCONF = 'taxi.urls'$/;"	v
+ReadOnlyTripSerializer	trips/serializers.py	/^class ReadOnlyTripSerializer(serializers.ModelSerializer):$/;"	c
+SECRET_KEY	taxi/settings.py	/^SECRET_KEY = 'oq0)uh_er5xx^p_8xslu!7%3@x6l9e0hsh-isjo^m6)nk$q(+^'$/;"	v
+STARTED	trips/models.py	/^    STARTED = 'STARTED'$/;"	v	class:Trip
+STATIC_URL	taxi/settings.py	/^STATIC_URL = '\/static\/'$/;"	v
+STATUSES	trips/models.py	/^    STATUSES = ($/;"	v	class:Trip
+SignUpView	trips/views.py	/^class SignUpView(generics.CreateAPIView):$/;"	c
+TEMPLATES	taxi/settings.py	/^TEMPLATES = [$/;"	v
+TEST_CHANNEL_LAYERS	trips/tests/test_websockets.py	/^TEST_CHANNEL_LAYERS = {$/;"	v
+TEST_RUNNER	taxi/settings.py	/^TEST_RUNNER = "redgreenunittest.django.runner.RedGreenDiscoverRunner"$/;"	v
+TIME_ZONE	taxi/settings.py	/^TIME_ZONE = 'UTC'$/;"	v
+TaxiConsumer	trips/consumers.py	/^class TaxiConsumer(AsyncJsonWebsocketConsumer):$/;"	c
+TestWebsockets	trips/tests/test_websockets.py	/^class TestWebsockets:$/;"	c
+Trip	trips/models.py	/^class Trip(models.Model):$/;"	c
+TripAdmin	trips/admin.py	/^class TripAdmin(admin.ModelAdmin):$/;"	c
+TripSerializer	trips/serializers.py	/^class TripSerializer(serializers.ModelSerializer):$/;"	c
+TripView	trips/views.py	/^class TripView(viewsets.ReadOnlyModelViewSet):$/;"	c
+TripsConfig	trips/apps.py	/^class TripsConfig(AppConfig):$/;"	c
+USE_I18N	taxi/settings.py	/^USE_I18N = True$/;"	v
+USE_L10N	taxi/settings.py	/^USE_L10N = True$/;"	v
+USE_TZ	taxi/settings.py	/^USE_TZ = True$/;"	v
+User	trips/models.py	/^class User(AbstractUser):$/;"	c
+UserAdmin	trips/admin.py	/^class UserAdmin(DefaultUserAdmin):$/;"	c
+UserSerializer	trips/serializers.py	/^class UserSerializer(serializers.ModelSerializer):$/;"	c
+WSGI_APPLICATION	taxi/settings.py	/^WSGI_APPLICATION = 'taxi.wsgi.application'$/;"	v
+__init__	trips/consumers.py	/^    def __init__(self, scope):$/;"	m	class:TaxiConsumer
+__str__	trips/models.py	/^    def __str__(self):$/;"	m	class:Trip	file:
+_create_trip	trips/consumers.py	/^    def _create_trip(self, content):$/;"	m	class:TaxiConsumer
+_get_trips	trips/consumers.py	/^    def _get_trips(self, user):$/;"	m	class:TaxiConsumer
+_get_user_group	trips/consumers.py	/^    def _get_user_group(self, user):$/;"	m	class:TaxiConsumer
+_update_trip	trips/consumers.py	/^    def _update_trip(self, content):$/;"	m	class:TaxiConsumer
+app_name	trips/urls.py	/^app_name = 'taxi'$/;"	v
+application	taxi/asgi.py	/^application = get_default_application()$/;"	v
+application	taxi/routing.py	/^application = ProtocolTypeRouter({$/;"	v
+application	taxi/wsgi.py	/^application = get_wsgi_application()$/;"	v
+auth_connect	trips/tests/test_websockets.py	/^async def auth_connect(user):$/;"	f
+blank	trips/models.py	/^        blank=True,$/;"	v	class:Trip
+communicator	trips/tests/test_websockets.py	/^    communicator = await auth_connect(user)$/;"	v
+connect	trips/consumers.py	/^    async def connect(self):$/;"	m	class:TaxiConsumer
+connect_and_create_trip	trips/tests/test_websockets.py	/^async def connect_and_create_trip($/;"	f
+connect_and_update_trip	trips/tests/test_websockets.py	/^async def connect_and_update_trip(*, user, trip, status):$/;"	f
+create	trips/serializers.py	/^    def create(self, validated_data):$/;"	m	class:UserSerializer
+create_trip	trips/consumers.py	/^    async def create_trip(self, event):$/;"	m	class:TaxiConsumer
+create_trip	trips/tests/test_websockets.py	/^def create_trip(**kwargs):$/;"	f
+create_user	trips/tests/test_http.py	/^def create_user(username='user@example.com', password=PASSWORD):$/;"	f
+create_user	trips/tests/test_websockets.py	/^def create_user($/;"	f
+created	trips/models.py	/^    created = models.DateTimeField(auto_now_add=True)$/;"	v	class:Trip
+dependencies	trips/migrations/0001_initial.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	trips/migrations/0002_trip.py	/^    dependencies = [$/;"	v	class:Migration
+disconnect	trips/consumers.py	/^    async def disconnect(self, code):$/;"	m	class:TaxiConsumer
+driver	trips/models.py	/^    driver = models.ForeignKey($/;"	v	class:Trip
+driver	trips/serializers.py	/^    driver = UserSerializer(read_only=True)$/;"	v	class:ReadOnlyTripSerializer
+drop_off_address	trips/models.py	/^    drop_off_address = models.CharField(max_length=255)$/;"	v	class:Trip
+echo_message	trips/consumers.py	/^    async def echo_message(self, event):$/;"	m	class:TaxiConsumer
+fields	trips/admin.py	/^    fields = ($/;"	v	class:TripAdmin
+fields	trips/migrations/0001_initial.py	/^            fields=[$/;"	v	class:Migration
+fields	trips/migrations/0002_trip.py	/^            fields=[$/;"	v	class:Migration
+fields	trips/serializers.py	/^        fields = '__all__'$/;"	v	class:ReadOnlyTripSerializer.Meta
+fields	trips/serializers.py	/^        fields = '__all__'$/;"	v	class:TripSerializer.Meta
+fields	trips/serializers.py	/^        fields = ($/;"	v	class:UserSerializer.Meta
+get_absolute_url	trips/models.py	/^    def get_absolute_url(self):$/;"	m	class:Trip
+id	trips/models.py	/^    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)$/;"	v	class:Trip
+initial	trips/migrations/0001_initial.py	/^    initial = True$/;"	v	class:Migration
+list_display	trips/admin.py	/^    list_display = ($/;"	v	class:TripAdmin
+list_filter	trips/admin.py	/^    list_filter = ($/;"	v	class:TripAdmin
+lookup_field	trips/views.py	/^    lookup_field = 'id'$/;"	v	class:TripView
+lookup_url_kwarg	trips/views.py	/^    lookup_url_kwarg = 'trip_id'$/;"	v	class:TripView
+main	manage.py	/^def main():$/;"	f
+managers	trips/migrations/0001_initial.py	/^            managers=[$/;"	v	class:Migration
+model	trips/serializers.py	/^        model = Trip$/;"	v	class:ReadOnlyTripSerializer.Meta
+model	trips/serializers.py	/^        model = Trip$/;"	v	class:TripSerializer.Meta
+model	trips/serializers.py	/^        model = get_user_model()$/;"	v	class:UserSerializer.Meta
+name	trips/apps.py	/^    name = 'trips'$/;"	v	class:TripsConfig
+name	trips/migrations/0001_initial.py	/^            name='User',$/;"	v	class:Migration
+name	trips/migrations/0002_trip.py	/^            name='Trip',$/;"	v	class:Migration
+null	trips/models.py	/^        null=True,$/;"	v	class:Trip
+on_delete	trips/models.py	/^        on_delete=models.DO_NOTHING,$/;"	v	class:Trip
+operations	trips/migrations/0001_initial.py	/^    operations = [$/;"	v	class:Migration
+operations	trips/migrations/0002_trip.py	/^    operations = [$/;"	v	class:Migration
+options	trips/migrations/0001_initial.py	/^            options={$/;"	v	class:Migration
+password	trips/tests/test_websockets.py	/^        password=password$/;"	v
+password1	trips/serializers.py	/^    password1 = serializers.CharField(write_only=True)$/;"	v	class:UserSerializer
+password2	trips/serializers.py	/^    password2 = serializers.CharField(write_only=True)$/;"	v	class:UserSerializer
+permission_classes	trips/views.py	/^    permission_classes = (permissions.IsAuthenticated,)$/;"	v	class:LogOutView
+permission_classes	trips/views.py	/^    permission_classes = (permissions.IsAuthenticated,)$/;"	v	class:TripView
+pick_up_address	trips/models.py	/^    pick_up_address = models.CharField(max_length=255)$/;"	v	class:Trip
+post	trips/views.py	/^    def post(self, *args, **kwargs):$/;"	m	class:LogOutView
+post	trips/views.py	/^    def post(self, request):$/;"	m	class:LogInView
+queryset	trips/views.py	/^    queryset = Trip.objects.all()$/;"	v	class:TripView
+queryset	trips/views.py	/^    queryset = get_user_model().objects.all()$/;"	v	class:SignUpView
+read_only_fields	trips/serializers.py	/^        read_only_fields = ('id', 'created', 'updated',)$/;"	v	class:TripSerializer.Meta
+read_only_fields	trips/serializers.py	/^        read_only_fields = ('id',)$/;"	v	class:UserSerializer.Meta
+readonly_fields	trips/admin.py	/^    readonly_fields = ($/;"	v	class:TripAdmin
+receive_json	trips/consumers.py	/^    async def receive_json(self, content, **kwargs):$/;"	m	class:TaxiConsumer
+related_name	trips/models.py	/^        related_name='trips_as_driver'$/;"	v	class:Trip
+related_name	trips/models.py	/^        related_name='trips_as_rider'$/;"	v	class:Trip
+rider	trips/models.py	/^    rider = models.ForeignKey($/;"	v	class:Trip
+rider	trips/serializers.py	/^    rider = UserSerializer(read_only=True)$/;"	v	class:ReadOnlyTripSerializer
+serializer_class	trips/views.py	/^    serializer_class = TripSerializer$/;"	v	class:TripView
+serializer_class	trips/views.py	/^    serializer_class = UserSerializer$/;"	v	class:SignUpView
+setUp	trips/tests/test_http.py	/^    def setUp(self):$/;"	m	class:AuthenticationTest
+setUp	trips/tests/test_http.py	/^    def setUp(self):$/;"	m	class:HttpTripTest
+status	trips/models.py	/^    status = models.CharField($/;"	v	class:Trip
+test_authorized_user_can_connect	trips/tests/test_websockets.py	/^    async def test_authorized_user_can_connect(self, settings):$/;"	m	class:TestWebsockets
+test_driver_can_update_trips	trips/tests/test_websockets.py	/^    async def test_driver_can_update_trips(self, settings):$/;"	m	class:TestWebsockets
+test_driver_is_added_to_trip_group_on_update	trips/tests/test_websockets.py	/^    async def test_driver_is_added_to_trip_group_on_update(self, settings):$/;"	m	class:TestWebsockets
+test_driver_is_alerted_on_trip_create	trips/tests/test_websockets.py	/^    async def test_driver_is_alerted_on_trip_create(self, settings):$/;"	m	class:TestWebsockets
+test_rider_can_create_trips	trips/tests/test_websockets.py	/^    async def test_rider_can_create_trips(self, settings):$/;"	m	class:TestWebsockets
+test_rider_is_added_to_trip_group_on_create	trips/tests/test_websockets.py	/^    async def test_rider_is_added_to_trip_group_on_create(self, settings):$/;"	m	class:TestWebsockets
+test_rider_is_added_to_trip_groups_on_connect	trips/tests/test_websockets.py	/^    async def test_rider_is_added_to_trip_groups_on_connect(self, settings):$/;"	m	class:TestWebsockets
+test_rider_is_alerted_on_trip_update	trips/tests/test_websockets.py	/^    async def test_rider_is_alerted_on_trip_update(self, settings):$/;"	m	class:TestWebsockets
+test_user_can_list_trips	trips/tests/test_http.py	/^    def test_user_can_list_trips(self):$/;"	m	class:HttpTripTest
+test_user_can_log_in	trips/tests/test_http.py	/^    def test_user_can_log_in(self):$/;"	m	class:AuthenticationTest
+test_user_can_log_out	trips/tests/test_http.py	/^    def test_user_can_log_out(self):$/;"	m	class:AuthenticationTest
+test_user_can_retrieve_trip_by_id	trips/tests/test_http.py	/^    def test_user_can_retrieve_trip_by_id(self):$/;"	m	class:HttpTripTest
+test_user_can_sign_up	trips/tests/test_http.py	/^    def test_user_can_sign_up(self):$/;"	m	class:AuthenticationTest
+update_trip	trips/consumers.py	/^    async def update_trip(self, event):$/;"	m	class:TaxiConsumer
+updated	trips/models.py	/^    updated = models.DateTimeField(auto_now=True)$/;"	v	class:Trip
+urlpatterns	taxi/urls.py	/^urlpatterns = [$/;"	v
+urlpatterns	trips/urls.py	/^urlpatterns = [$/;"	v
+user	trips/tests/test_websockets.py	/^    user = get_user_model().objects.create_user($/;"	v
+username	trips/tests/test_websockets.py	/^        username=username,$/;"	v
+validate	trips/serializers.py	/^    def validate(self, data):$/;"	m	class:UserSerializer
