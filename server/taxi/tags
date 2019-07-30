@@ -56,7 +56,7 @@ UserAdmin	trips/admin.py	/^class UserAdmin(DefaultUserAdmin):$/;"	c
 UserSerializer	trips/serializers.py	/^class UserSerializer(serializers.ModelSerializer):$/;"	c
 WSGI_APPLICATION	taxi/settings.py	/^WSGI_APPLICATION = 'taxi.wsgi.application'$/;"	v
 __init__	trips/consumers.py	/^    def __init__(self, scope):$/;"	m	class:TaxiConsumer
-__str__	trips/models.py	/^    def __str__(self):$/;"	m	class:Trip	file:
+__str__	trips/models.py	/^    def __str__(self):$/;"	m	class:Trip
 _create_trip	trips/consumers.py	/^    def _create_trip(self, content):$/;"	m	class:TaxiConsumer
 _get_trips	trips/consumers.py	/^    def _get_trips(self, user):$/;"	m	class:TaxiConsumer
 _get_user_group	trips/consumers.py	/^    def _get_user_group(self, user):$/;"	m	class:TaxiConsumer
@@ -66,7 +66,6 @@ application	taxi/asgi.py	/^application = get_default_application()$/;"	v
 application	taxi/routing.py	/^application = ProtocolTypeRouter({$/;"	v
 application	taxi/wsgi.py	/^application = get_wsgi_application()$/;"	v
 auth_connect	trips/tests/test_websockets.py	/^async def auth_connect(user):$/;"	f
-blank	trips/models.py	/^        blank=True,$/;"	v	class:Trip
 communicator	trips/tests/test_websockets.py	/^    communicator = await auth_connect(user)$/;"	v
 connect	trips/consumers.py	/^    async def connect(self):$/;"	m	class:TaxiConsumer
 connect_and_create_trip	trips/tests/test_websockets.py	/^async def connect_and_create_trip($/;"	f
@@ -74,7 +73,7 @@ connect_and_update_trip	trips/tests/test_websockets.py	/^async def connect_and_u
 create	trips/serializers.py	/^    def create(self, validated_data):$/;"	m	class:UserSerializer
 create_trip	trips/consumers.py	/^    async def create_trip(self, event):$/;"	m	class:TaxiConsumer
 create_trip	trips/tests/test_websockets.py	/^def create_trip(**kwargs):$/;"	f
-create_user	trips/tests/test_http.py	/^def create_user(username='user@example.com', password=PASSWORD):$/;"	f
+create_user	trips/tests/test_http.py	/^def create_user(username='user@example.com',$/;"	f
 create_user	trips/tests/test_websockets.py	/^def create_user($/;"	f
 created	trips/models.py	/^    created = models.DateTimeField(auto_now_add=True)$/;"	v	class:Trip
 dependencies	trips/migrations/0001_initial.py	/^    dependencies = [$/;"	v	class:Migration
@@ -91,6 +90,9 @@ fields	trips/serializers.py	/^        fields = '__all__'$/;"	v	class:ReadOnlyTri
 fields	trips/serializers.py	/^        fields = '__all__'$/;"	v	class:TripSerializer.Meta
 fields	trips/serializers.py	/^        fields = ($/;"	v	class:UserSerializer.Meta
 get_absolute_url	trips/models.py	/^    def get_absolute_url(self):$/;"	m	class:Trip
+get_queryset	trips/views.py	/^    def get_queryset(self):$/;"	m	class:TripView
+group	trips/models.py	/^    def group(self):$/;"	m	class:User
+group	trips/serializers.py	/^    group = serializers.CharField()$/;"	v	class:UserSerializer
 id	trips/models.py	/^    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)$/;"	v	class:Trip
 initial	trips/migrations/0001_initial.py	/^    initial = True$/;"	v	class:Migration
 list_display	trips/admin.py	/^    list_display = ($/;"	v	class:TripAdmin
@@ -105,8 +107,6 @@ model	trips/serializers.py	/^        model = get_user_model()$/;"	v	class:UserSe
 name	trips/apps.py	/^    name = 'trips'$/;"	v	class:TripsConfig
 name	trips/migrations/0001_initial.py	/^            name='User',$/;"	v	class:Migration
 name	trips/migrations/0002_trip.py	/^            name='Trip',$/;"	v	class:Migration
-null	trips/models.py	/^        null=True,$/;"	v	class:Trip
-on_delete	trips/models.py	/^        on_delete=models.DO_NOTHING,$/;"	v	class:Trip
 operations	trips/migrations/0001_initial.py	/^    operations = [$/;"	v	class:Migration
 operations	trips/migrations/0002_trip.py	/^    operations = [$/;"	v	class:Migration
 options	trips/migrations/0001_initial.py	/^            options={$/;"	v	class:Migration
@@ -118,14 +118,11 @@ permission_classes	trips/views.py	/^    permission_classes = (permissions.IsAuth
 pick_up_address	trips/models.py	/^    pick_up_address = models.CharField(max_length=255)$/;"	v	class:Trip
 post	trips/views.py	/^    def post(self, *args, **kwargs):$/;"	m	class:LogOutView
 post	trips/views.py	/^    def post(self, request):$/;"	m	class:LogInView
-queryset	trips/views.py	/^    queryset = Trip.objects.all()$/;"	v	class:TripView
 queryset	trips/views.py	/^    queryset = get_user_model().objects.all()$/;"	v	class:SignUpView
-read_only_fields	trips/serializers.py	/^        read_only_fields = ('id', 'created', 'updated',)$/;"	v	class:TripSerializer.Meta
-read_only_fields	trips/serializers.py	/^        read_only_fields = ('id',)$/;"	v	class:UserSerializer.Meta
+read_only_fields	trips/serializers.py	/^        read_only_fields = ($/;"	v	class:TripSerializer.Meta
+read_only_fields	trips/serializers.py	/^        read_only_fields = ('id', )$/;"	v	class:UserSerializer.Meta
 readonly_fields	trips/admin.py	/^    readonly_fields = ($/;"	v	class:TripAdmin
 receive_json	trips/consumers.py	/^    async def receive_json(self, content, **kwargs):$/;"	m	class:TaxiConsumer
-related_name	trips/models.py	/^        related_name='trips_as_driver'$/;"	v	class:Trip
-related_name	trips/models.py	/^        related_name='trips_as_rider'$/;"	v	class:Trip
 rider	trips/models.py	/^    rider = models.ForeignKey($/;"	v	class:Trip
 rider	trips/serializers.py	/^    rider = UserSerializer(read_only=True)$/;"	v	class:ReadOnlyTripSerializer
 serializer_class	trips/views.py	/^    serializer_class = TripSerializer$/;"	v	class:TripView
